@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.petstore.model.ProductMapper">
+ 
+	<resultMap type="com.example.petstore.model.Product" id="productMap">
+		<id column="p_id" property="id" />
+		<result column="p_name" property="name" />
+		<result column="p_price" property="price" />
+	</resultMap>
+	
+	<insert id="addProduct" parameterType="com.example.petstore.model.Product" useGeneratedKeys="true" keyProperty="id">
+		insert into t_product(p_name,p_price) values(#{name},#{price})
+	</insert>
+	<select id="selectById" parameterType="int" resultType="com.example.petstore.model.Product" resultMap="productMap">
+		select * from t_product where p_id=#{id}
+	</select>
+
+</mapper>
